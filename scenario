@@ -1,20 +1,26 @@
 #! /bin/bash
+
+red=$'\e[1;31m'
+grn=$'\e[1;32m'
+blu=$'\e[1;34m'
+end=$'\e[0m'
+
 if [ "$1" = "-h" ] || [ "$#" -lt 2 ]; then
-    echo "usage: $0 (core | help) scenario p w i [0 ... | -a ] [--logfolder <path>]"
-    echo "starts a scenario with prepare/initiate at all given nodes"
-    echo "       params for scripts: p - preparations"
-    echo "       params for scripts: w - watch-agents"
-    echo "       params for scripts: i - initiate"
-    echo
-    echo "With help, a help text for the scenario will be printed."
-    echo
-    echo "Return codes:"
-    echo "    1: generic error"
-    echo "    2: scenario nonexistant"
-    echo "    3: no nodes found"
-    echo "    4: simulation type not supported"
-    echo "    10-19: error in Phase 0-9"
-    echo "    130: script killed by ctrl-c"
+    printf "${red}usage: $0 (core | help) scenario p w i [0 ... | -a ] [--logfolder <path>]\n${end}"
+    printf "${red}starts a scenario with prepare/initiate at all given nodes\n${end}"
+    printf "${red}       params for scripts: p - preparations\n${end}"
+    printf "${red}       params for scripts: w - watch-agents\n${end}"
+    printf "${red}       params for scripts: i - initiate\n${end}"
+    printf "\n"
+    printf "${red}With help, a help text for the scenario will be printed.\n${end}"
+    printf "\n"
+    printf "${red}Return codes:\n${end}"
+    printf "${red}    1: generic error\n${end}"
+    printf "${red}    2: scenario nonexistant\n${end}"
+    printf "${red}    3: no nodes found\n${end}"
+    printf "${red}    4: simulation type not supported\n${end}"
+    printf "${red}    10-19: error in Phase 0-9\n${end}"
+    printf "${red}    130: script killed by ctrl-c\n${end}"
     exit
 fi
 
@@ -32,16 +38,16 @@ INIT_ARGS=$5
 
 ###Build active nodes array and check if appendix argument is present
 VARARGS=(${@:6})
-for i in "${!VARARGS[@]}"; do 
+for i in "${!VARARGS[@]}"; do
     if [ "${VARARGS[$i]}" = "--logfolder" ]; then
         LOCAL_LOG_FOLDER="${VARARGS[$((i+1))]}"
         break
     fi
-    
-    ACTIVE_NODES="$ACTIVE_NODES ${VARARGS[$(( $i - 1 ))]}"
+
+    ACTIVE_NODES="$ACTIVE_NODES ${VARARGS[$(( $i - 3 ))]}"
 done
 
-LOG_FOLDER=/tmp/serval-monitor
+LOG_FOLDER="/tmp/serval-monitor_tmp"
 if [ -z ${LOCAL_LOG_FOLDER+x} ]; then LOCAL_LOG_FOLDER=$LOG_FOLDER-$SCENARIO-`date +%Y-%m-%d_%H-%M`; fi
 mkdir -p $LOCAL_LOG_FOLDER
 
@@ -54,24 +60,24 @@ rm -f $SEVERAL_ALL_SIDS_FILE
 
 # test if scenario is available
 if [ ! -d "$SCENARIO" ]; then
-    echo -e "\e[1;31mError: Scenario $SCENARIO does not exist\e[0m"
+    printf "${red}Error: Scenario $SCENARIO does not exist\n${end}"
     exit 2
 fi
-echo -e "\e[1;32mRunning Scenario $SCENARIO "
+printf "${grn}## Running Scenario $SCENARIO\n"
 
 NODES=()
 if [ "$TYPE" == "core" ]; then
     while read N; do NODES=( "${NODES[@]}" "$N" ); done < <(find /tmp/ 2>/dev/null | grep pycore.*/n[0-9]*$ | sort)
-    
+
     NODE_CNT=`find /tmp/ 2>/dev/null | grep pycore.*/n[0-9]*$ | wc -l`
     if [ "$NODE_CNT" == "0" ]; then
-        echo -e "\e[1;31mError: Couldn't find any core nodes\e[0m"
+        printf "${red}Error: Couldn't find any core nodes\n${end}"
         exit 3
     fi
 
-    echo -n -e "  Using CORE Nodes "
-    for NODE in ${NODES[@]}; do printf "`basename $NODE` "; done; echo
-    
+    printf "## Using Nodes "
+    for NODE in ${NODES[@]}; do printf "`basename $NODE` "; done;
+
     exec_par () {
         PIDS=""
         FAIL="0"
@@ -81,25 +87,22 @@ if [ "$TYPE" == "core" ]; then
         done
         for PID in $PIDS; do
             wait $PID || let "FAIL=$?"
-            printf .
-            if [ "$FAIL" != "0" ]; then echo -e "\e[1;31mPID $PID failed with $FAIL, aborting scenario.\e[0m"; exit 1; fi
+            if [ "$FAIL" != "0" ]; then printf "${red}PID $PID failed with $FAIL, aborting scenario.\n${end}"; exit 1; fi
         done
-        echo
     }
-    
+
     exec_seq () {
-        echo
         for N in $1; do
             vcmd -c ${NODES[$(( $N - 1 ))]} -- sh -c "${@:2}"
-            echo
+            printf "\n"
         done
     }
-    
+
     exec () { vcmd -c ${NODES[$(($1-1))]} -- sh -c "${@:2}"; }
     shell () { vcmd -c ${NODES[$(($1-1))]} -- sh; }
-    
+
 else
-    echo -e "\e[1;31mError: Type $TYPE is not supported\e[0m"
+    printf "${red}Error: Type $TYPE is not supported\n${end}"
     exit 4
 fi
 
@@ -109,54 +112,40 @@ ALL_NODES=`seq -s " " 1 $NODE_CNT`
 # replacing -a option for all nodes
 if [ "$ACTIVE_NODES" = " -a" ]; then ACTIVE_NODES="$ALL_NODES"; fi
 ACTIVE_NODE_CNT=`echo $ACTIVE_NODES | wc -w`
-echo -n -e "  Active: ${ACTIVE_NODES[@]}"
-echo -e "\e[0m\n"
+printf "\n${grn}## Active: ${ACTIVE_NODES[@]}\n${end}"
 
 
 ### PHASE 1
 export PHASE=11
-echo -n -e "\e[1;34mPhase 1 - Prepare: $SCENARIO_FOLDER/prepare $NODE_CNT $ACTIVE_NODE_CNT $PREP_ARGS\e[0m"
+printf "${blu}## Phase 1 - Prepare: $SCENARIO_FOLDER/prepare $NODE_CNT $ACTIVE_NODE_CNT $PREP_ARGS\n${end}"
 echo "`date_ms`, 1, prepare" >> $TIMING_FILE
 exec_seq "$ACTIVE_NODES" "$SCENARIO_FOLDER/prepare $NODE_CNT $ACTIVE_NODE_CNT $PREP_ARGS"
 
 ### PHASE 2
 export PHASE=12
 echo "`date_ms`, 2, system-monitoring" >> $TIMING_FILE
-
-echo -n -e "\e[1;34m        - Starting system monitoring\e[0m"
+printf "${blu}## Phase 2 - Starting system monitoring\n${end}"
 exec_par "$ALL_NODES" "/serval-tests/monitor system"
 
 ## PHASE 3
 export PHASE=13
-echo -n -e "\e[1;34mPhase 3 - Generating SIDs and starting servald\e[0m"
+printf "${blu}## Phase 3 - Generating SIDs and starting servald\n${end}"
 echo "`date_ms`, 3, servald-start" >> $TIMING_FILE
 exec_par "$ALL_NODES" 'export HOST=`hostname | cut -d u -f2 | sed -e "s/^0*//g"`; servald keyring add "" `printf "%2x" $((16+$HOST))` > /dev/null; servald start > /dev/null; sleep 2'
 
 ## PHASE 3.1
-echo -n -e "\e[1;34m        - Collecting serval sids\e[0m"
-exec_seq "$ALL_NODES" "servald id self | tail -n1" | awk '{print $3}' | grep -v '^$' >> $SEVERAL_ALL_SIDS_FILE
-echo
-
-echo -n -e "\e[1;34m        - Distributing serval sids\e[0m"
-
-### PHASE 3.2
-#if [ "$TYPE" == "core" ]; then
-#    echo -n -e "\e[1;34m        - Initiating scan for other servald instances\e[0m"
-#    exec_seq "$ALL_NODES" 'for i in `ifconfig | grep "inet addr" | grep -v "127.0.0" | cut -d":" -f 2 | cut -d"." -f1,2,3`; do echo -n "$i.255: "; servald scan $i.255; done; exit 0'
-#elif [ "$TYPE" == "miniworld" ]; then
-#    echo -n -e "\e[1;34m        - Initiating scan for other servald instances\e[0m"
-#    exec_seq "$ALL_NODES" 'for i in `ifconfig | grep -A2 "eth" | grep "Bcast" | cut -d":" -f 2 | cut -d" " -f 1`; do echo -n "$i: "; servald scan $i; done; exit 0'
-#fi
+printf "${blu}## Phase 3 - Collecting serval sids\n${end}"
+exec_seq "$ALL_NODES" "servald id self" | grep -v "sid" | grep -v "^1$" | grep -v "^$" >> $SEVERAL_ALL_SIDS_FILE
 
 ### PHASE 4
 export PHASE=14
-echo -n -e "\e[1;34mPhase 4 - Starting servald monitoring\e[0m"
+printf "${blu}## Phase 4 - Starting servald monitoring\n${end}"
 echo "`date_ms`, 4, servald-monitoring" >> $TIMING_FILE
 exec_par "$ALL_NODES" "/serval-tests/monitor serval"
 
 ### PHASE 5
 export PHASE=15
-echo -n -e "\e[1;34mPhase 5 - Starting watch-agents: $SCENARIO_FOLDER/watch-agent $NODE_CNT $ACTIVE_NODE_CNT $WATCH_ARGS\e[0m"
+printf "${blu}## Phase 5 - Starting watch-agents: $SCENARIO_FOLDER/watch-agent $NODE_CNT $ACTIVE_NODE_CNT $WATCH_ARGS\n${end}"
 echo "`date_ms`, 5, watch-agent-start" >> $TIMING_FILE
 
 # using trap to kill running vcmds
@@ -165,43 +154,41 @@ trap "kill $AGENTS 2> /dev/null; echo Killed agents; exit 130" SIGINT SIGTERM
 for NODE in $ALL_NODES; do
     exec $NODE "$SCENARIO_FOLDER/watch-agent $NODE_CNT $ACTIVE_NODE_CNT $WATCH_ARGS" &
     AGENTS="$AGENTS $!"
-    printf .
 done
-echo
 
 ### PHASE 6
 export PHASE=16
-echo -n -e "\e[1;34mPhase 6 - Initiating Scenario: $SCENARIO_FOLDER/initiate $NODE_CNT $ACTIVE_NODE_CNT $INIT_ARGS\e[0m"
+printf "${blu}## Phase 6 - Initiating Scenario: $SCENARIO_FOLDER/initiate $NODE_CNT $ACTIVE_NODE_CNT $INIT_ARGS\n${end}"
 echo "`date_ms`, 6, initiate" >> $TIMING_FILE
 exec_seq "$ACTIVE_NODES" "$SCENARIO_FOLDER/initiate $NODE_CNT $ACTIVE_NODE_CNT $INIT_ARGS"
 
 ### PHASE 7
 export PHASE=17
-echo -e "\e[1;34mPhase 7 - Waiting for agents:\e[0m"
+printf "${blu}## Phase 7 - Waiting for agents:\n${end}"
 echo "`date_ms`, 7, watch-agent-wait" >> $TIMING_FILE
 for PID in $AGENTS; do
-    wait $PID || echo "  Watch-Agent $PID failed ($?)."
+    wait $PID || printf "${red}  Watch-Agent $PID failed ($?).\n${end}"
 done
 echo
 
 if [ "$FAIL" == "0" ]; then
-    echo -n -e "\e[1;32mPhase 7 - watch-agents finished, sleeping 5 seconds to have a trailer in monitoring\e[0m"
-    for i in {1..5}; do printf .; sleep 1; done
-    echo
+    printf "${grn}## Phase 7 - watch-agents finished, sleeping 5 seconds to have a trailer in monitoring"
+    for i in {1..5}; do printf "."; sleep 1; done; printf "\n${end}"
 fi
 
 ### PHASE 8
 export PHASE=18
-echo -n -e "\e[1;34mPhase 8 - Stopping monitoring\e[0m"
+printf "${blu}## Phase 8 - Stopping monitoring\n${end}"
 echo "`date_ms`, 8, stop-monitoring" >> $TIMING_FILE
 exec_par "$ALL_NODES" "/serval-tests/monitor stop; servald stop > /dev/null"
 
 ### PHASE 9
 export PHASE=19
-echo -n -e "\e[1;34mPhase 9 - Data Collection: \e[0m"
+printf "${blu}## Phase 9 - Data Collection:\n${end}"
 echo "`date_ms`, 9, data-collection" >> $TIMING_FILE
-mv $LOG_FOLDER/*/* $LOCAL_LOG_FOLDER
 
-echo
-echo -e "\e[1;32mScenario $SCENARIO done.\e[0m"
+mv $LOG_FOLDER/*/* $LOCAL_LOG_FOLDER
+rm -rf $LOG_FOLDER
+
+printf "${grn}## Scenario $SCENARIO done.\n${end}"
 echo "`date_ms`, 10, finished" >> $TIMING_FILE

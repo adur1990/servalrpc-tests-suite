@@ -1,4 +1,4 @@
-# serval-testsuite
+# servalrpc-tests-suite
 
 ## Architecture
 Each test consists of seven phases:
@@ -6,7 +6,7 @@ Each test consists of seven phases:
  1. **prepare** (active nodes)
  2. start system monitoring
  3. start servald
- 4. start servald monitoring
+ 4. start servald + rpc monitoring
  5. start **watch-agent**s
  6. **initiate** scenario (active nodes)
  7. waiting for watch-agents
@@ -28,11 +28,10 @@ The **watch-agent** is executed on *every* node and should exit using the follow
 This way the operator is able to debug the scenario. It's also possible to write to stdout for all three scripts.
 
 ## Invoke Scenario
-
-To run a scenario use the **core-gui** or **MiniWorld** to start it and then use **scenario** to start the scenario:
+To run a scenario use **sudo scenario** to start the scenario:
 
 ```bash
-usage: ./scenario (core | miniworld | help) scenario p w i [0 ... | -a ]
+usage: ./scenario (core | help) scenario p w i [0 ... | -a ]
 starts a scenario with prepare/initiate at all given nodes
        params for scripts: p - preparations
        params for scripts: w - watch-agents
@@ -46,8 +45,6 @@ With `./scenario help scenario` a info will be printed, how this scenario has to
 Examples:
 1. ```$ ./scenario core mass-inject-file 0```
 2. `./scenario help delayed-files/`
-
-
 
 ### Helpers
 * **core-daemonize-all** - executes and forks a command on every core node (silently)
@@ -63,6 +60,7 @@ Examples:
 The core nodes do need some files in place:
 
  - **/serval-tests/\***
+ - **~/.core/myservices/{netmon, broadcastfix, servalrpc}.py
  - **servald**
 
 ### Setup Scenario
@@ -87,10 +85,10 @@ All scripts get these parameters when executed:
 To run a scenario multiple times or different scenarios sequentially, you can use the auto-scenario script. The Usage is as follows:
 
 ```
-./auto-scenario <config-file>
+sudo ./auto-scenario <config-file>
 ```
 
-In the `<config-file>` you have to specify the scenarios you want to run and how often. This is done by simply specifying the command line arguments as you would when using the `scenario` script. To set how often a particular scenario should be executed, set the number after a "`#`".
+In the `<config-file>` you have to specify the scenarios you want to run and how often. This is done by simply specifying the command line arguments as you would when using the `scenario` script. To set how often a particular scenario should be executed, set the number after a "`#`". The last parameter has to be the topology, which can be `hub_n`, `chain_n` or `islands_n` where `n` has to be an even number of nodes.
 
 ### Example
 
@@ -102,9 +100,7 @@ Usage
 Usage `auto-scenario.conf`
 
 ```
-core delayed-files/ "" "f 2" "f 2 f1" 0 #3
+core delayed-files/ "" "f 2" "f 2 f1" 0 #3 hub_4
 ```
 
-In the example presented above, the delayed-files scenario will be executed 3 times in core scenario 6 times in miniworld.
-
-The only thing you have to do is to make sure that core and/or miniworld is running.
+In the example presented above, the delayed-files scenario will be executed 3 times in core with 4 nodes connected through a hub.

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TIMEOUT_S="30"
+TIMEOUT_S="20"
 LATER=$((`date +%s` + $TIMEOUT_S))
 HOSTNAME=`hostname`
 
@@ -18,7 +18,7 @@ while [ true ]; do
     if [ "$LATER" -lt `date +%s` ]; then
          echo "Finished: Timeout on $HOSTNAME" >&2
          exit 0
-        
+
         # exit 0 is fine here, for debug purposes
     #    echo "Serval finished on $HOSTNAME" >&2
     #    exit 0

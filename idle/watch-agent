@@ -24,10 +24,13 @@ while [ true ]; do
     #fi
 
     # Check if condition is reached
-    if [ $(servald peer count) -eq `expr $TOTAL_NODES - 1` ]; then
-        sleep 60
+    PEERS=$(servald peer count)
+    if [ $PEERS -eq `expr $TOTAL_NODES - 1` ]; then
+        sleep 5
         echo "All peers found. $HOSTNAME finished."
 	    exit 0
+    else
+        echo "$PEERS peers found."
     fi
 
     sleep 15
