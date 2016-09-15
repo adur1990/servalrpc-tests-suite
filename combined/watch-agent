@@ -1,0 +1,37 @@
+#!/bin/sh
+
+TIMEOUT_S="500"
+LATER=$((`date +%s` + $TIMEOUT_S))
+HOSTNAME=`hostname`
+
+TOTAL_NODES="$1"
+TOTAL_ACTIVE_NODES="$2"
+TIME_VAL="$3"
+
+SCENARIO_TIMEOUT="$TIME_VAL"
+SCENARIO_LATER=$((`date +%s` + $SCENARIO_TIMEOUT))
+
+while [ true ]; do
+    # returns 1 if script itself fails
+    # returns 255 if ssh/vcmd session fails
+
+    # Check if servald is running
+    if [ $(servald status | grep stopped | wc -l) -eq 1 ]; then
+        echo "ERROR: Serval crashed on $HOSTNAME" >&2
+        exit 2
+    fi
+
+    # Check if test timed out
+    #if [ "$LATER" -lt `date +%s` ]; then
+    #    echo "ERROR: Timeout on $HOSTNAME" >&2
+    #    exit 3
+    #fi
+
+    # Check if condition is reached
+    if [ "$SCENARIO_LATER" -lt `date +%s` ]; then
+    	echo "Watch-agents successfully finished after $TIME_VAL seconds on $HOSTNAME"
+    	exit 0
+    fi
+
+    sleep 15
+done

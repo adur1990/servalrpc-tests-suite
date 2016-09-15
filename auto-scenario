@@ -1,0 +1,103 @@
+#! /bin/bash
+exec &> >(tee /tmp/.auto-scenario.log )
+
+#rpc_runloop_exception_handler () {
+#    echo -e "\e[37m\e[44m# Either an exception occured on the RPC runloop or the RPC server is not started at all!. See '$MINIWORLD_TRACEBACK_PATH' for runloop errors:\e[0m"
+#    cat $MINIWORLD_TRACEBACK_PATH
+#    echo -e "\e[37m\e[44m# --- ignoring for now!\e[0m"
+    #echo -e "\e[37m\e[44m# Fully aborting auto-scenario!\e[0m"
+    #pkill -TERM -P $$
+    #exit 1
+#}
+
+exec_scenario () {
+    echo -e "\e[30m\e[47m### Performing scenario: $@\e[0m"
+    (eval ./scenario $@)
+    ret=$?
+    if [ $ret -eq 0 ]; then
+        echo -e "\e[32m\e[47m### Scenario finished successfully!\e[0m"
+    else
+        echo -e "\e[31m\e[47m### Scenario failed with return code $ret...\n`./scenario | tail -n-6`\e[0m"
+    fi
+    return $ret
+}
+
+initialize_topology () {
+    echo -e "\e[30m\e[47m### Starting RPC scenario $1...\e[0m"
+    (cd /root/miniworld/MiniWorld && python miniworld/rpc/RPCStartScenario.py MiniWorld_Scenarios/serval_paper/$1)
+    init=$?
+    if [ $init -eq 0 ]; then
+        echo -e "\e[32m\e[47m### RPC scenario started successfully!\e[0m"
+    else
+        echo -e "\e[31m\e[47m### Initialization failed (returned $init).\e[0m"
+    fi
+    return $init
+}
+
+finalize_topology () {
+    echo -e "\e[30m\e[47m### Iteration done, finalizing topology.\e[0m"
+    pkill -fe RPCServer.py > /dev/null
+    ./miniworld_event_hook_cleanup.sh
+    #(cd /root/miniworld/MiniWorld && python miniworld/rpc/RPCStopScenario.py)
+    #return $?
+}
+trap 'echo "Stopping"' SIGINT
+
+beautify_params () {
+    for param in "$@"; do
+        ret=$ret`eval echo $param- | sed "s/f /f./g; s/\ /_/g"`
+    done
+    echo -$ret
+}
+
+mapfile -t LINES <$1
+
+AUTO_SCENARIO_START=`date +%Y-%m-%d_%H-%M`
+AUTO_LOGFOLDER=/tmp/serval-monitor/${AUTO_SCENARIO_START}_$(basename ${1})
+MINIWORLD_TRACEBACK_PATH=$AUTO_LOGFOLDER/miniworld_traceback.log
+
+trap rpc_runloop_exception_handler SIGUSR1
+MAIN_PROCESS_PID=$$
+
+echo -e "\e[37m\e[44m# Autorunning scenario configurations from $1, pid: $MAIN_PROCESS_PID\e[0m"
+
+for line in "${LINES[@]}"; do
+    if [[ $line == \#* ]]; then 
+	echo -e "\n\e[37m\e[40m## Skipping set: $line\e[0m"
+	continue
+    fi
+
+    # configuration file line parsing
+    OLDIFS=$IFS
+    IFS=" " read -ra line_arr <<< "$line"
+    len=${#line_arr[@]}
+    env=${line_arr[0]}
+    scenario=${line_arr[@]:1:$(( len-3 ))}
+    params=${line_arr[@]:2:$(( len-4 ))}
+    repeat=${line_arr[-2]:1:${#line_arr[-2]}}
+    topology=${line_arr[-1]}
+    
+    echo -e "\n\e[37m\e[40m## Running set:   $env | $topology | $scenario | repeating $repeat times\e[0m"
+
+    run=1
+    while [ $run -le $repeat ]; do
+        echo -e "\e[30m\e[47m### Iteration #$run: $env | $topology | $scenario\e[0m"
+        scenarioname=${line_arr[1]}
+        SCENARIO_LOGFOLDER=$AUTO_LOGFOLDER/$scenarioname-$env
+        
+        RUN_START=`date +%Y-%m-%d_%H-%M`
+        SHORT_PARAMS=`eval beautify_params $params`
+        
+        export LOGFOLDER=$SCENARIO_LOGFOLDER/$topology-$scenarioname-$SHORT_PARAMS-run_`printf "%03g" $run`--$RUN_START
+        mkdir -p $LOGFOLDER
+        echo "$line" > $LOGFOLDER/parameters.conf
+        
+        exec_scenario $env $scenario --logfolder $LOGFOLDER |& tee $LOGFOLDER/scenario.log 2>&1
+        
+        run=$(( run + 1 ))
+    done
+done
+
+kill $WATCHER_PID > /dev/null
+
+echo -e "\n\e[37m\e[44m# Done autorunning scenario configurations from $1\e[0m"

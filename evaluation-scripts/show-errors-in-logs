@@ -1,0 +1,13 @@
+#!/bin/bash
+
+function usage () {
+    echo "Usage: $0 <log folder path>"
+    echo "    recursively displays all errors in the given scenario log folder"
+}
+
+if [ "$1" = "-h" ] || [ "$#" -ne 1  ] || [ ! -d "$1" ]; then
+    usage
+    exit
+fi
+
+find $1 -type f -not -empty -name *.err -print -exec cat {} \; | tac | sed '/^du: / d'| sed '/EXPECTED , or ] GOT EOF/I, 1d' | sed '/Cannot symlink/I, +2 d' | sed '/packet was successfully sent/I, +2 d' | tac | grep -B 1 '^[^//]' | sed '/^-/ d' | sed '\|^/|{x;p;x;}'
