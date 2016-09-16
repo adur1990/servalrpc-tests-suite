@@ -1,0 +1,11 @@
+#!/bin/sh
+usage() {
+    echo "usage: $0"
+    echo "collects and writes SIDs from all CORE serval peers to stdout"
+}
+
+if [ "$1" = "-h" ]; then usage; exit 0; fi
+
+for f in `find /tmp/  2>/dev/null | grep pycore.*/n[0-9]*$`; do
+	vcmd -c $f -- servald id self | egrep [A-F0-9]+{64}
+done

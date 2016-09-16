@@ -1,10 +1,10 @@
 #! /bin/bash
 exec &> >(tee /tmp/.auto-scenario.log )
 
-red=$'\e[1;37m\e[41m'
-grn=$'\e[1;37m\e[42m'
-blu=$'\e[1;37m\e[44m'
-end=$'\e[0m\e[0m'
+red=$'\e[1;7;31m'
+grn=$'\e[1;7;32m'
+blu=$'\e[1;7;34m'
+end=$'\e[0m'
 
 CORE_TOPO_PID=-1
 
@@ -95,6 +95,8 @@ for line in "${LINES[@]}"; do
         finalize_topology
 
         mkdir -p $LOGFOLDER/netmon; mv /tmp/netmon* $_
+        mv /tmp/*_server.csv $LOGFOLDER/active 2> /dev/null
+        mv /tmp/*_client.csv $LOGFOLDER/active 2> /dev/null
 
         run=$(( run + 1 ))
     done
