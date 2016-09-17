@@ -1,0 +1,1 @@
+./scenario core transparent_periodic_simple_all/ "" "<time>" "<num>" [0 ... | -a]
