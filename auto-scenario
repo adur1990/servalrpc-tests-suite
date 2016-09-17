@@ -100,6 +100,9 @@ for line in "${LINES[@]}"; do
 
         run=$(( run + 1 ))
     done
+    rsync -a /tmp/serval-monitor/ /media/sf_Logs/
 done
+
+chmod -R 0777 /media/sf_Logs
 
 printf "${grn}# Done autorunning scenario configurations from $1\n${end}"
