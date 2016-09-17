@@ -4,4 +4,4 @@ TOTAL_NODES="$1"
 TOTAL_ACTIVE_NODES="$2"
 NUM="$3"
 
-nohup bash -c "( python /serval-tests/rpc_call.py -d $NUM any 1> /dev/null ) &" 1> /dev/null
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d any -s 0 1> /dev/null ) &" 1> /dev/null

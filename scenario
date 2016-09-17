@@ -129,9 +129,10 @@ exec_par "$ALL_NODES" "/serval-tests/monitor system"
 
 ## PHASE 3
 export PHASE=13
-printf "${blu}## Phase 3 - Generating SIDs and starting servald\n${end}"
+printf "${blu}## Phase 3 - Generating SIDs and starting servald and rpc -l\n${end}"
 echo "`date_ms`, 3, servald-start" >> $TIMING_FILE
 exec_par "$ALL_NODES" 'export HOST=`hostname | cut -d u -f2 | sed -e "s/^0*//g"`; servald keyring add "" `printf "%2x" $((16+$HOST))` > /dev/null; servald start > /dev/null; sleep 2'
+exec_par "$ALL_NODES" 'nohup $(echo rpc -l 1> /dev/null) &' 1> /dev/null
 
 ## PHASE 3.1
 printf "${blu}## Phase 3 - Collecting serval sids\n${end}"
@@ -180,7 +181,7 @@ fi
 export PHASE=18
 printf "${blu}## Phase 8 - Stopping monitoring\n${end}"
 echo "`date_ms`, 8, stop-monitoring" >> $TIMING_FILE
-exec_par "$ALL_NODES" "/serval-tests/monitor stop; servald stop > /dev/null"
+exec_par "$ALL_NODES" "/serval-tests/monitor stop; pkill -2 rpc 1> /dev/null; sleep 2; servald stop > /dev/null;"
 
 ### PHASE 9
 export PHASE=19
