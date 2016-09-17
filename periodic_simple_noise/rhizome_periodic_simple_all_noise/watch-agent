@@ -1,0 +1,18 @@
+#!/bin/sh
+
+TOTAL_NODES="$1"
+TOTAL_ACTIVE_NODES="$2"
+TIMEOUT_S="$3"
+LATER=$((`date +%s` + $TIMEOUT_S))
+
+nohup bash -c "python /serval-tests/SimpleRhizomeAdder.py &"
+
+while [ true ]; do
+    # Check if test timed out
+    if [ "$LATER" -lt `date +%s` ]; then
+        echo "Watchagent on `hostname` waited successfull." >&2
+        exit 0
+    fi
+
+    sleep 15
+done
