@@ -1,0 +1,1 @@
+./scenario core msp_periodic_simple/ "" "<time>" "<num>" [0 ... | -a]

@@ -1,1 +1,0 @@
-./scenario (core | miniworld) debug "" "" "" [0 ... | -a ]

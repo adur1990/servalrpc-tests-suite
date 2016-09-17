@@ -1,9 +1,0 @@
-#!/bin/sh
-
-TOTAL_NODES="$1"
-TOTAL_ACTIVE_NODES="$2"
-COUNT_OR_TIME="$3"
-COUNT_OR_TIME_VAL="$4"
-TEST_SET="$5"
-
-nohup bash -c "python /serval-tests/SimpleRhizomeAdder.py -s $TEST_SET -$COUNT_OR_TIME $COUNT_OR_TIME_VAL -l &"

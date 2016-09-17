@@ -1,1 +1,0 @@
-./scenario (core | miniworld) delayed-files/ "" "(t <sec> | f <num>)" "(t <sec> | f <num>) (f1 | f2 | f3)" [0 ... | -a ]

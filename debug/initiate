@@ -1,3 +1,0 @@
-#!/bin/sh
-echo -n "`hostname` $0 $@ - peers: "
-servald peer count
