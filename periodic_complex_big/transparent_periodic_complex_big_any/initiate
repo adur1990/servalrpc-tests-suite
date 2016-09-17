@@ -1,0 +1,7 @@
+#!/bin/sh
+
+TOTAL_NODES="$1"
+TOTAL_ACTIVE_NODES="$2"
+NUM="$3"
+
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d any -s 100000 1> /dev/null ) &" 1> /dev/null
