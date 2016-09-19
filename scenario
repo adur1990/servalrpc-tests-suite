@@ -181,7 +181,7 @@ fi
 export PHASE=18
 printf "${blu}## Phase 8 - Stopping monitoring\n${end}"
 echo "`date_ms`, 8, stop-monitoring" >> $TIMING_FILE
-exec_par "$ALL_NODES" "/serval-tests/monitor stop; pkill -2 rpc 1> /dev/null; sleep 2; servald stop > /dev/null;"
+exec_par "$ALL_NODES" "/serval-tests/monitor stop; pkill -9 rpc 1> /dev/null; sleep 2; servald stop > /dev/null;"
 
 ### PHASE 9
 export PHASE=19
