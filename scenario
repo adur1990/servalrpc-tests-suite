@@ -132,7 +132,7 @@ export PHASE=13
 printf "${blu}## Phase 3 - Generating SIDs and starting servald and rpc -l\n${end}"
 echo "`date_ms`, 3, servald-start" >> $TIMING_FILE
 exec_par "$ALL_NODES" 'export HOST=`hostname | cut -d u -f2 | sed -e "s/^0*//g"`; servald keyring add "" `printf "%2x" $((16+$HOST))` > /dev/null; servald start > /dev/null; sleep 2'
-exec_par "$ALL_NODES" 'nohup $(echo rpc -l 1> /dev/null) &' 1> /dev/null
+exec_par "$ALL_NODES" 'nohup bash -c "( rpc -l 1> /dev/null )" &' 1> /dev/null
 
 ## PHASE 3.1
 printf "${blu}## Phase 3 - Collecting serval sids\n${end}"
