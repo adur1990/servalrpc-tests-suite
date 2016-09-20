@@ -14,7 +14,7 @@ class colors:
     GREEN='\033[92m'
     END='\033[0m'
 
-req_folders = ["active", "err-log", "pidstat", "netmon", "diskusage", "rhizome-general", "rhizome-insertion", "servald-general", "serval-logs", "ntp-log"]
+req_folders = ["active", "err-log", "pidstat", "netmon", "diskusage", "rhizome-general", "servald-general", "serval-logs", "ntp-log"]
 
 inc_folders = []
 
@@ -33,10 +33,6 @@ def check_file(dirname):
 
 def check_rhizome_general(dirname):
     if "-file" in dirname and 'rhizome-general' in dirname:
-        check_file(dirname)
-
-def check_rhizome_insertion(dirname):
-    if "-file" in dirname and 'rhizome-insertion' in dirname:
         check_file(dirname)
 
 def check_servald_general(dirname):
@@ -83,7 +79,6 @@ def run_is_complete(run_folder):
             print "There are elements missing in " + dirname + ": got " + str(len(os.listdir(dirname))) + ", expected - " + str(len(nodes))
             result=False
         check_rhizome_general(dirname)
-        check_rhizome_insertion(dirname)
         check_servald_general(dirname)
         check_diskusage(dirname)
         check_netmon(dirname)
@@ -113,7 +108,7 @@ def parse_args():
     parser.add_argument("depth", type=int, help="the relative depth of the run folders")
     parser.add_argument("--complete", help="also show all completed runs", action="store_true")
     return parser.parse_args()
-  
+
 if __name__=='__main__':
     args=parse_args()
     search_folder(**vars(args))

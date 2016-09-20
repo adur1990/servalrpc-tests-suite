@@ -1,7 +1,0 @@
-#!/bin/sh
-
-TOTAL_NODES="$1"
-TOTAL_ACTIVE_NODES="$2"
-TESTFILE_PATH="/root/tmp/serval-testfiles"
-
-/serval-tests/rhizome-add-testfiles $TESTFILE_PATH > /dev/null
