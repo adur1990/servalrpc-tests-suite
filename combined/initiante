@@ -1,0 +1,241 @@
+#!/bin/sh
+
+# transparent_complex_big_all_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d all -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_complex_big_all_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d all -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_complex_big_any_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d any -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_complex_big_sid_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d sid -s 10000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_complex_big_any_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d any -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_complex_big_all_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d all -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_complex_big_sid_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d sid -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# msp_complex_big_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m s -n $NUM -d sid -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_complex_big_sid_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d sid -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_complex_big_any_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d any -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_simple_any
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d any -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# msp_simple
+nohup bash -c "( python /serval-tests/rpc_call.py -m s -n $NUM -d sid -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_simple_sid
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d sid -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_simple_any
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d any -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_simple_all
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d all -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_simple_all
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d all -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_simple_all
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d all -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_simple_sid
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d sid -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_simple_any
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d any -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_simple_sid
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d sid -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_simple_all_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d all -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_simple_all_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d all -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# msp_simple_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m s -n $NUM -d sid -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_simple_sid_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d sid -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_simple_any_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d any -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_simple_sid_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d sid -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_simple_all_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d all -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_simple_any_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d any -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_simple_any_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d any -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_simple_sid_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d sid -s 0 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_complex_small_any_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d any -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_complex_small_sid_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d sid -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# msp_complex_small_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m s -n $NUM -d sid -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_complex_small_any_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d any -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_complex_small_all_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d all -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_complex_small_sid_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d sid -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_complex_small_any_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d any -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_complex_small_sid_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d sid -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_complex_small_all_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d all -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_complex_small_all_noise
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d all -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_complex_small_sid
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d sid -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_complex_small_sid
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d sid -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_complex_small_all
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d all -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_complex_small_any
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d any -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_complex_small_any
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d any -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_complex_small_sid
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d sid -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_complex_small_all
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d all -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_complex_small_any
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d any -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# msp_complex_small
+nohup bash -c "( python /serval-tests/rpc_call.py -m s -n $NUM -d sid -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_complex_small_all
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d all -s 1000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_complex_big_sid
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d sid -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_complex_big_any
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d any -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_complex_big_all
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d all -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# msp_complex_big
+nohup bash -c "( python /serval-tests/rpc_call.py -m s -n $NUM -d sid -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_complex_big_any
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d any -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_complex_big_any
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d any -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_complex_big_sid
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d sid -s 10000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# mdp_complex_big_all
+nohup bash -c "( python /serval-tests/rpc_call.py -m d -n $NUM -d all -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# rhizome_complex_big_all
+nohup bash -c "( python /serval-tests/rpc_call.py -m r -n $NUM -d all -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
+
+# transparent_complex_big_sid
+nohup bash -c "( python /serval-tests/rpc_call.py -m t -n $NUM -d sid -s 100000 1> /dev/null ) &" 1> /dev/null
+sleep 1
