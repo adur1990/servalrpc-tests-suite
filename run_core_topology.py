@@ -8,7 +8,7 @@ from core.misc import ipaddr
 from core import service
 
 myservices_path = '/home/artur/.core/myservices'
-services = 'DefaultRoute|ServalRPCService|BroadcastFixService|NetmonService'
+services = 'DefaultRoute|ServalRPCService|NetmonService'
 session = pycore.Session(persistent=True)
 
 

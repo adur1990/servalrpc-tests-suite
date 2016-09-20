@@ -47,11 +47,12 @@ Examples:
 2. `./scenario help delayed-files/`
 
 ### Helpers
-* **core-daemonize-all** - executes and forks a command on every core node (silently)
-* **core-execute-all** - excecutes a command on every core node and shows the output
-* **core-get-sids** - writes SIDs from all core nodes to $SEVERAL_ALL_SIDS_FILE
-* **core-parallel-all** - executes a command parallel on every core node
-* **core-watch-serval** - watches servald on every core node, and tells if one crashed
+* **daemonize-all** - executes and forks a command on every core node (silently)
+* **execute-all** - excecutes a command on every core node and shows the output
+* **execute-node** - excecutes a command on a single core node and shows the output
+* **get-sids** - writes SIDs from all core nodes to $SEVERAL_ALL_SIDS_FILE
+* **parallel-all** - executes a command parallel on every core node
+* **-watch-serval** - watches servald on every core node, and tells if one crashed
 * **show-log** - should be run from main host, opens log of given node name in less for viewing or if _-n_ is appended just outputs the absolute log file path (e.g. ```$ show-log n12 ```)
 * **check-crash** - checks all running core nodes under /tmp for logs containing crash information. These can be displayed using _show-log_
 
@@ -60,7 +61,7 @@ Examples:
 The core nodes do need some files in place:
 
  - **/serval-tests/\***
- - **~/.core/myservices/{netmon, broadcastfix, servalrpc}.py
+ - **~/.core/myservices/{netmon, servalrpc}.py
  - **servald**
 
 ### Setup Scenario
@@ -100,7 +101,7 @@ Usage
 Usage `auto-scenario.conf`
 
 ```
-core delayed-files/ "" "f 2" "f 2 f1" 0 #3 hub_4
+core simple/msp_simple "" "60" "5" 0 #3 hub_4
 ```
 
-In the example presented above, the delayed-files scenario will be executed 3 times in core with 4 nodes connected through a hub.
+In the example presented above, the msp_simple scenario will be executed 3 times in core with 4 nodes connected through a hub. The watch-agents wait 60 seconds and 5 RPC calls are issued.
