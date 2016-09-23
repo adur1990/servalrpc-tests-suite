@@ -88,20 +88,20 @@ def build_chain(nodecount):
     session.shutdown()
 
 
-def build_hub(nodecount):
-    service.CoreServices(session).importcustom(myservices_path)
-    hub = session.addobj(cls=pycore.nodes.HubNode, name='hub')
-    nodes = []
-    for i in range(1, nodecount + 1):
-        nodes.append(create_node(i))
-        nodes[i-1].newnetif(hub, ['10.0.0.{}/24'.format(i)])
-
-    for n in nodes:
-        service.CoreServices(session).bootnodeservices(n)
-
-    signal.pause()
-
-    session.shutdown()
+#def build_hub(nodecount):
+#    service.CoreServices(session).importcustom(myservices_path)
+#    hub = session.addobj(cls=pycore.nodes.HubNode, name='hub')
+#    nodes = []
+#    for i in range(1, nodecount + 1):
+#        nodes.append(create_node(i))
+#        nodes[i-1].newnetif(hub, ['10.0.0.{}/24'.format(i)])
+#
+#    for n in nodes:
+#        service.CoreServices(session).bootnodeservices(n)
+#
+#    signal.pause()
+#
+#    session.shutdown()
 
 
 if __name__ == '__main__':
@@ -115,8 +115,8 @@ if __name__ == '__main__':
 
     if topology == 'chain':
         build_chain(nodecount)
-    elif topology == 'hub':
-        build_hub(nodecount)
+#    elif topology == 'hub':
+#        build_hub(nodecount)
     elif topology == 'islands':
         build_islands(nodecount)
     else:
