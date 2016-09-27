@@ -110,7 +110,12 @@ fi
 ALL_NODES=`seq -s " " 1 $NODE_CNT`
 
 # replacing -a option for all nodes
-if [ "$ACTIVE_NODES" = " -a" ]; then ACTIVE_NODES="$ALL_NODES"; fi
+if [ "$ACTIVE_NODES" = " -a" ]; then
+    ACTIVE_NODES="0"
+    PERCENTAGE=50
+else
+    PERCENTAGE=5
+fi
 ACTIVE_NODE_CNT=`echo $ACTIVE_NODES | wc -w`
 printf "\n${grn}## Active: ${ACTIVE_NODES[@]}\n${end}"
 
@@ -129,14 +134,22 @@ exec_par "$ALL_NODES" "/serval-tests/monitor system"
 
 ## PHASE 3
 export PHASE=13
-printf "${blu}## Phase 3 - Generating SIDs and starting servald and rpc -l\n${end}"
+printf "${blu}## Phase 3 - Generating SIDs and starting servald\n${end}"
 echo "`date_ms`, 3, servald-start" >> $TIMING_FILE
 exec_par "$ALL_NODES" 'export HOST=`hostname | cut -d u -f2 | sed -e "s/^0*//g"`; servald keyring add "" `printf "%2x" $((16+$HOST))` > /dev/null; servald start > /dev/null; sleep 2'
-exec_par "$ALL_NODES" 'nohup bash -c "( rpc -l 1> /dev/null )" &' 1> /dev/null
 
 ## PHASE 3.1
-printf "${blu}## Phase 3 - Collecting serval sids\n${end}"
-exec_seq "$ALL_NODES" "servald id self" | grep -v "sid" | grep -v "^1$" | grep -v "^$" >> $SEVERAL_ALL_SIDS_FILE
+printf "${blu}## Phase 3 - Collecting serval sids and starting RPC servers\n${end}"
+LEN=0
+for nn in $ALL_NODES; do
+    LEN=$(( LEN + 1 ))
+done
+TMP=$(( $LEN * $PERCENTAGE ))
+NUM_RPC_NODES=$(( $TMP / 100 ))
+RPC_NODES=`shuf --input-range=2-$LEN | head -${NUM_RPC_NODES}`
+
+exec_seq "$RPC_NODES" "servald id self" | grep -v "sid" | grep -v "^1$" | grep -v "^$" >> $SEVERAL_ALL_SIDS_FILE
+exec_par "$RPC_NODES" 'nohup bash -c "( rpc -l 1> /dev/null )" &' 1> /dev/null
 
 ### PHASE 4
 export PHASE=14
