@@ -29,7 +29,7 @@ initialize_topology () {
         printf "${red}# Initialization failed.\n${end}"
     else
         printf "${blu}# Waiting...!\n${end}"
-        sleep 30
+        sleep 45
         printf "${grn}# RPC scenario started successfully!\n${end}"
     fi
     return $CORE_TOPO_PID
@@ -38,6 +38,7 @@ initialize_topology () {
 finalize_topology () {
     printf "${grn}# Iteration done, finalizing topology (PID: $CORE_TOPO_PID).\n${end}"
     kill -n 2 $CORE_TOPO_PID
+    sleep 30
 }
 trap finalize_topology SIGINT
 
