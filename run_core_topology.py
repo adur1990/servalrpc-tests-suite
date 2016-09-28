@@ -31,7 +31,8 @@ random.seed(sys.argv[1])
 
 
 def signal_handler(num, stack):
-    pass
+    session.shutdown()
+    sys.exit()
 
 
 # Returns true in 25% of all cases
@@ -104,35 +105,33 @@ def update_islands(mode, cnt, islands_tuple=None):
 
 # Create Islands topology
 def build_islands():
+    signal.signal(signal.SIGINT, signal_handler)
     service.CoreServices(session).importcustom(myservices_path)
 
     opensessionxml(session, "topologies/islands.xml", True)
     
-    try:
-        while True:
-            # Sleep 120 to 300 seconds (2 to 5 minutes)
-            sleeptime = 120 + random.randint(0, 180)
-            time.sleep(sleeptime)
-            # If there are dynamic links and should_change returns true (25% probability) all dynamic links are cleared
-            if should_change() and len(cur_ptp_list) != 0:
-                clear_islands()
-                continue
-            # In 25% of all cases all islands are connected together
-            if should_change():
-                connect_all()
-                continue
-            # Flip a coin if dynamic links should be created or removed
-            choice = bool(random.getrandbits(1))
-            # How many dynamic links should be changed
-            num_change_links = random.randint(2, 5)
-            # First case: add two random islands
-            # Second case: delte num_change_links dynamic links
-            if choice:
-                update_islands("add", num_change_links, islands[random.choice(islands.keys())])
-            elif len(cur_ptp_list) >= num_change_links:
-                update_islands("remove", num_change_links)
-    except KeyboardInterrupt:
-        session.shutdown()
+    while True:
+        # Sleep 120 to 300 seconds (2 to 5 minutes)
+        sleeptime = 120 + random.randint(0, 180)
+        time.sleep(sleeptime)
+        # If there are dynamic links and should_change returns true (25% probability) all dynamic links are cleared
+        if should_change() and len(cur_ptp_list) != 0:
+            clear_islands()
+            continue
+        # In 25% of all cases all islands are connected together
+        if should_change():
+            connect_all()
+            continue
+        # Flip a coin if dynamic links should be created or removed
+        choice = bool(random.getrandbits(1))
+        # How many dynamic links should be changed
+        num_change_links = random.randint(2, 5)
+        # First case: add two random islands
+        # Second case: delte num_change_links dynamic links
+        if choice:
+            update_islands("add", num_change_links, islands[random.choice(islands.keys())])
+        elif len(cur_ptp_list) >= num_change_links:
+            update_islands("remove", num_change_links)
 
 
 # Create Chain topology (read and parse chain.xml and wait for ctrl-c)
@@ -143,8 +142,6 @@ def build_chain():
     opensessionxml(session, "topologies/chain.xml", True)
     
     signal.pause()
-
-    session.shutdown()
 
 
 # Create Hub topology
@@ -162,8 +159,6 @@ def build_hub():
         service.CoreServices(session).bootnodeservices(tmp)
 
     signal.pause()
-
-    session.shutdown()
 
 
 if __name__ == '__main__':
