@@ -29,7 +29,7 @@ initialize_topology () {
         printf "${red}# Initialization failed.\n${end}"
     else
         printf "${blu}# Waiting...!\n${end}"
-        sleep 45
+        sleep 60
         printf "${grn}# RPC scenario started successfully!\n${end}"
     fi
     return $CORE_TOPO_PID
@@ -38,7 +38,8 @@ initialize_topology () {
 finalize_topology () {
     printf "${grn}# Iteration done, finalizing topology (PID: $CORE_TOPO_PID).\n${end}"
     kill -n 2 $CORE_TOPO_PID
-    sleep 30
+    sleep 45
+    ./cleanup.sh
 }
 trap finalize_topology SIGINT
 
@@ -101,9 +102,9 @@ for line in "${LINES[@]}"; do
 
         run=$(( run + 1 ))
     done
-    rsync -a /tmp/serval-monitor/ /media/sf_Logs/
+    rsync -a --remove-source-files /tmp/serval-monitor/ /home/artur/logs/
 done
 
-chmod -R 0777 /media/sf_Logs
+chown -R artur:artur /home/artur/logs/
 
 printf "${grn}# Done autorunning scenario configurations from $1\n${end}"
