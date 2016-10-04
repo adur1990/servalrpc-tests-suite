@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Global defines. Make changes easier.
-WATCH_AGENT_TIME=2700
+WATCH_AGENT_TIME=2400
 NUM_CALLS=10
 
 

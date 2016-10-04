@@ -1,7 +1,7 @@
 #!/bin/sh
 
-#TIMEOUT_S="500"
-#LATER=$((`date +%s` + $TIMEOUT_S))
+TIMEOUT_S="500"
+LATER=$((`date +%s` + $TIMEOUT_S))
 HOSTNAME=`hostname`
 
 TOTAL_NODES="$1"
@@ -18,10 +18,10 @@ while [ true ]; do
     fi
 
     # Check if test timed out
-    #if [ "$LATER" -lt `date +%s` ]; then
-    #    echo "ERROR: Timeout on $HOSTNAME" >&2
-    #    exit 3
-    #fi
+    if [ "$LATER" -lt `date +%s` ]; then
+        echo "ERROR: Timeout on $HOSTNAME" >&2
+        exit 3
+    fi
 
     # Check if condition is reached
     PEERS=$(servald peer count)
