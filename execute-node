@@ -4,8 +4,8 @@ if [ "$1" = "-h" ]; then
     echo "executes a command on the given node"
 fi
 
-NODE=`find /tmp/  2>/dev/null | grep pycore.*/n$1*$`
+NODE=`find /tmp/  2>/dev/null | grep pycore.*/n$1$`
 
-echo '# HOST:' ${f##*/}
+echo '# HOST:' ${NODE##*/}
 vcmd -c $NODE -- sh -c "$(echo ${@:2})"
 echo
