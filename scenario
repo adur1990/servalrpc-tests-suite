@@ -67,7 +67,7 @@ printf "${grn}## Running Scenario $SCENARIO\n"
 
 NODES=()
 if [ "$TYPE" == "core" ]; then
-    while read N; do NODES=( "${NODES[@]}" "$N" ); done < <(find /tmp/ 2>/dev/null | grep pycore.*/n[0-9]*$ | sort)
+    while read N; do NODES=( "${NODES[@]}" "$N" ); done < <(find /tmp/ 2>/dev/null | grep pycore.*/n[0-9]*$ | sort -V)
 
     NODE_CNT=`find /tmp/ 2>/dev/null | grep pycore.*/n[0-9]*$ | wc -l`
     if [ "$NODE_CNT" == "0" ]; then
@@ -82,7 +82,7 @@ if [ "$TYPE" == "core" ]; then
         PIDS=""
         FAIL="0"
         for N in $1; do
-            vcmd -c ${NODES[$(( N - 1 ))]} -- sh -c "${@:2}" 1>&2 &
+            vcmd -c ${NODES[$N]} -- sh -c "${@:2}" 1>&2 &
             PIDS="$PIDS $!"
         done
         for PID in $PIDS; do
@@ -106,7 +106,7 @@ else
 fi
 
 # ALL_NODES contains indices of all nodes for easier handling
-ALL_NODES=`seq -s " " 1 $NODE_CNT`
+ALL_NODES=`seq -s " " 0 $(( NODE_CNT - 1 ))`
 
 # replacing -a option for all nodes
 if [ "$ACTIVE_NODES" = " -a" ]; then
@@ -152,8 +152,11 @@ printf "${blu}## Phase 3 - Collecting serval sids and starting RPC servers\n${en
 #exec_par "$RPC_NODES" 'nohup bash -c "( rpc -l 1> /dev/null )" &' 1> /dev/null
 ####################################################
 
-exec_seq "$ACTIVE_NODES" "servald id self" | grep -v "sid" | grep -v "^1$" | grep -v "^$" >> $SEVERAL_ALL_SIDS_FILE
-exec_par "$ACTIVE_NODES" 'nohup bash -c "( rpc -l 1> /dev/null )" &' 1> /dev/null
+while [[ ! -s $SEVERAL_ALL_SIDS_FILE ]]; do
+    exec_seq "31" "servald id self" | grep -v "sid" | grep -v "^1$" | grep -v "^$" >> $SEVERAL_ALL_SIDS_FILE
+    sleep 1
+done
+exec_par "31" 'nohup bash -c "( rpc -l 1> /dev/null )" &' 1> /dev/null
 
 
 ### PHASE 4
