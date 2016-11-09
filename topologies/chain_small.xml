@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario compiled="true" name="chain_small.xml" version="1.0" xmlns="nmfPlan" xmlns:CORE="coreSpecific">
+  <network id="net0" name="net0">
+    <type>ethernet</type>
+    <alias domain="COREID">59776</alias>
+    <member type="interface">n7/eth1</member>
+    <member type="interface">n8/eth0</member>
+    <member type="channel">net0/chan0</member>
+    <channel id="net0/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n7/eth1</member>
+      <member index="1" type="interface">n8/eth0</member>
+    </channel>
+  </network>
+  <network id="net1" name="net1">
+    <type>ethernet</type>
+    <alias domain="COREID">29089</alias>
+    <member type="interface">n1/eth0</member>
+    <member type="interface">n2/eth0</member>
+    <member type="channel">net1/chan0</member>
+    <channel id="net1/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n1/eth0</member>
+      <member index="1" type="interface">n2/eth0</member>
+    </channel>
+  </network>
+  <network id="net2" name="net2">
+    <type>ethernet</type>
+    <alias domain="COREID">38562</alias>
+    <member type="interface">n10/eth1</member>
+    <member type="interface">n11/eth0</member>
+    <member type="channel">net2/chan0</member>
+    <channel id="net2/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n10/eth1</member>
+      <member index="1" type="interface">n11/eth0</member>
+    </channel>
+  </network>
+  <network id="net3" name="net3">
+    <type>ethernet</type>
+    <alias domain="COREID">26886</alias>
+    <member type="interface">n18/eth1</member>
+    <member type="interface">n19/eth0</member>
+    <member type="channel">net3/chan0</member>
+    <channel id="net3/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n18/eth1</member>
+      <member index="1" type="interface">n19/eth0</member>
+    </channel>
+  </network>
+  <network id="net4" name="net4">
+    <type>ethernet</type>
+    <alias domain="COREID">20134</alias>
+    <member type="interface">n21/eth1</member>
+    <member type="interface">n22/eth0</member>
+    <member type="channel">net4/chan0</member>
+    <channel id="net4/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n21/eth1</member>
+      <member index="1" type="interface">n22/eth0</member>
+    </channel>
+  </network>
+  <network id="net5" name="net5">
+    <type>ethernet</type>
+    <alias domain="COREID">19437</alias>
+    <member type="interface">n11/eth1</member>
+    <member type="interface">n12/eth0</member>
+    <member type="channel">net5/chan0</member>
+    <channel id="net5/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n11/eth1</member>
+      <member index="1" type="interface">n12/eth0</member>
+    </channel>
+  </network>
+  <network id="net6" name="net6">
+    <type>ethernet</type>
+    <alias domain="COREID">14636</alias>
+    <member type="interface">n4/eth1</member>
+    <member type="interface">n5/eth0</member>
+    <member type="channel">net6/chan0</member>
+    <channel id="net6/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n4/eth1</member>
+      <member index="1" type="interface">n5/eth0</member>
+    </channel>
+  </network>
+  <network id="net7" name="net7">
+    <type>ethernet</type>
+    <alias domain="COREID">26158</alias>
+    <member type="interface">n22/eth1</member>
+    <member type="interface">n23/eth0</member>
+    <member type="channel">net7/chan0</member>
+    <channel id="net7/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n22/eth1</member>
+      <member index="1" type="interface">n23/eth0</member>
+    </channel>
+  </network>
+  <network id="net8" name="net8">
+    <type>ethernet</type>
+    <alias domain="COREID">16669</alias>
+    <member type="interface">n14/eth1</member>
+    <member type="interface">n15/eth0</member>
+    <member type="channel">net8/chan0</member>
+    <channel id="net8/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n14/eth1</member>
+      <member index="1" type="interface">n15/eth0</member>
+    </channel>
+  </network>
+  <network id="net9" name="net9">
+    <type>ethernet</type>
+    <alias domain="COREID">45105</alias>
+    <member type="interface">n24/eth1</member>
+    <member type="interface">n25/eth0</member>
+    <member type="channel">net9/chan0</member>
+    <channel id="net9/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n24/eth1</member>
+      <member index="1" type="interface">n25/eth0</member>
+    </channel>
+  </network>
+  <network id="net10" name="net10">
+    <type>ethernet</type>
+    <alias domain="COREID">48414</alias>
+    <member type="interface">n29/eth1</member>
+    <member type="interface">n30/eth0</member>
+    <member type="channel">net10/chan0</member>
+    <channel id="net10/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n29/eth1</member>
+      <member index="1" type="interface">n30/eth0</member>
+    </channel>
+  </network>
+  <network id="net11" name="net11">
+    <type>ethernet</type>
+    <alias domain="COREID">26807</alias>
+    <member type="interface">n19/eth1</member>
+    <member type="interface">n20/eth0</member>
+    <member type="channel">net11/chan0</member>
+    <channel id="net11/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n19/eth1</member>
+      <member index="1" type="interface">n20/eth0</member>
+    </channel>
+  </network>
+  <network id="net12" name="net12">
+    <type>ethernet</type>
+    <alias domain="COREID">54943</alias>
+    <member type="interface">n25/eth1</member>
+    <member type="interface">n26/eth0</member>
+    <member type="channel">net12/chan0</member>
+    <channel id="net12/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n25/eth1</member>
+      <member index="1" type="interface">n26/eth0</member>
+    </channel>
+  </network>
+  <network id="net13" name="net13">
+    <type>ethernet</type>
+    <alias domain="COREID">7745</alias>
+    <member type="interface">n5/eth1</member>
+    <member type="interface">n6/eth0</member>
+    <member type="channel">net13/chan0</member>
+    <channel id="net13/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n5/eth1</member>
+      <member index="1" type="interface">n6/eth0</member>
+    </channel>
+  </network>
+  <network id="net14" name="net14">
+    <type>ethernet</type>
+    <alias domain="COREID">41922</alias>
+    <member type="interface">n6/eth1</member>
+    <member type="interface">n7/eth0</member>
+    <member type="channel">net14/chan0</member>
+    <channel id="net14/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n6/eth1</member>
+      <member index="1" type="interface">n7/eth0</member>
+    </channel>
+  </network>
+  <network id="net15" name="net15">
+    <type>ethernet</type>
+    <alias domain="COREID">47556</alias>
+    <member type="interface">n13/eth1</member>
+    <member type="interface">n14/eth0</member>
+    <member type="channel">net15/chan0</member>
+    <channel id="net15/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n13/eth1</member>
+      <member index="1" type="interface">n14/eth0</member>
+    </channel>
+  </network>
+  <network id="net16" name="net16">
+    <type>ethernet</type>
+    <alias domain="COREID">28487</alias>
+    <member type="interface">n28/eth1</member>
+    <member type="interface">n29/eth0</member>
+    <member type="channel">net16/chan0</member>
+    <channel id="net16/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n28/eth1</member>
+      <member index="1" type="interface">n29/eth0</member>
+    </channel>
+  </network>
+  <network id="net17" name="net17">
+    <type>ethernet</type>
+    <alias domain="COREID">18413</alias>
+    <member type="interface">n27/eth1</member>
+    <member type="interface">n28/eth0</member>
+    <member type="channel">net17/chan0</member>
+    <channel id="net17/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n27/eth1</member>
+      <member index="1" type="interface">n28/eth0</member>
+    </channel>
+  </network>
+  <network id="net18" name="net18">
+    <type>ethernet</type>
+    <alias domain="COREID">29327</alias>
+    <member type="interface">n31/eth1</member>
+    <member type="interface">n32/eth0</member>
+    <member type="channel">net18/chan0</member>
+    <channel id="net18/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n31/eth1</member>
+      <member index="1" type="interface">n32/eth0</member>
+    </channel>
+  </network>
+  <network id="net19" name="net19">
+    <type>ethernet</type>
+    <alias domain="COREID">62044</alias>
+    <member type="interface">n17/eth1</member>
+    <member type="interface">n18/eth0</member>
+    <member type="channel">net19/chan0</member>
+    <channel id="net19/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n17/eth1</member>
+      <member index="1" type="interface">n18/eth0</member>
+    </channel>
+  </network>
+  <network id="net20" name="net20">
+    <type>ethernet</type>
+    <alias domain="COREID">62429</alias>
+    <member type="interface">n20/eth1</member>
+    <member type="interface">n21/eth0</member>
+    <member type="channel">net20/chan0</member>
+    <channel id="net20/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n20/eth1</member>
+      <member index="1" type="interface">n21/eth0</member>
+    </channel>
+  </network>
+  <network id="net21" name="net21">
+    <type>ethernet</type>
+    <alias domain="COREID">6757</alias>
+    <member type="interface">n9/eth1</member>
+    <member type="interface">n10/eth0</member>
+    <member type="channel">net21/chan0</member>
+    <channel id="net21/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n9/eth1</member>
+      <member index="1" type="interface">n10/eth0</member>
+    </channel>
+  </network>
+  <network id="net22" name="net22">
+    <type>ethernet</type>
+    <alias domain="COREID">20317</alias>
+    <member type="interface">n30/eth1</member>
+    <member type="interface">n31/eth0</member>
+    <member type="channel">net22/chan0</member>
+    <channel id="net22/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n30/eth1</member>
+      <member index="1" type="interface">n31/eth0</member>
+    </channel>
+  </network>
+  <network id="net23" name="net23">
+    <type>ethernet</type>
+    <alias domain="COREID">26753</alias>
+    <member type="interface">n26/eth1</member>
+    <member type="interface">n27/eth0</member>
+    <member type="channel">net23/chan0</member>
+    <channel id="net23/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n26/eth1</member>
+      <member index="1" type="interface">n27/eth0</member>
+    </channel>
+  </network>
+  <network id="net24" name="net24">
+    <type>ethernet</type>
+    <alias domain="COREID">8681</alias>
+    <member type="interface">n23/eth1</member>
+    <member type="interface">n24/eth0</member>
+    <member type="channel">net24/chan0</member>
+    <channel id="net24/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n23/eth1</member>
+      <member index="1" type="interface">n24/eth0</member>
+    </channel>
+  </network>
+  <network id="net25" name="net25">
+    <type>ethernet</type>
+    <alias domain="COREID">34922</alias>
+    <member type="interface">n3/eth1</member>
+    <member type="interface">n4/eth0</member>
+    <member type="channel">net25/chan0</member>
+    <channel id="net25/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n3/eth1</member>
+      <member index="1" type="interface">n4/eth0</member>
+    </channel>
+  </network>
+  <network id="net26" name="net26">
+    <type>ethernet</type>
+    <alias domain="COREID">17644</alias>
+    <member type="interface">n16/eth1</member>
+    <member type="interface">n17/eth0</member>
+    <member type="channel">net26/chan0</member>
+    <channel id="net26/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n16/eth1</member>
+      <member index="1" type="interface">n17/eth0</member>
+    </channel>
+  </network>
+  <network id="net27" name="net27">
+    <type>ethernet</type>
+    <alias domain="COREID">58258</alias>
+    <member type="interface">n8/eth1</member>
+    <member type="interface">n9/eth0</member>
+    <member type="channel">net27/chan0</member>
+    <channel id="net27/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n8/eth1</member>
+      <member index="1" type="interface">n9/eth0</member>
+    </channel>
+  </network>
+  <network id="net28" name="net28">
+    <type>ethernet</type>
+    <alias domain="COREID">27670</alias>
+    <member type="interface">n2/eth1</member>
+    <member type="interface">n3/eth0</member>
+    <member type="channel">net28/chan0</member>
+    <channel id="net28/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n2/eth1</member>
+      <member index="1" type="interface">n3/eth0</member>
+    </channel>
+  </network>
+  <network id="net29" name="net29">
+    <type>ethernet</type>
+    <alias domain="COREID">57600</alias>
+    <member type="interface">n15/eth1</member>
+    <member type="interface">n16/eth0</member>
+    <member type="channel">net29/chan0</member>
+    <channel id="net29/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n15/eth1</member>
+      <member index="1" type="interface">n16/eth0</member>
+    </channel>
+  </network>
+  <network id="net30" name="net30">
+    <type>ethernet</type>
+    <alias domain="COREID">44437</alias>
+    <member type="interface">n12/eth1</member>
+    <member type="interface">n13/eth0</member>
+    <member type="channel">net30/chan0</member>
+    <channel id="net30/chan0" name="chan0">
+      <type>ethernet</type>
+      <member index="0" type="interface">n12/eth1</member>
+      <member index="1" type="interface">n13/eth0</member>
+    </channel>
+  </network>
+  <host id="n1" name="n1">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n1/eth0" name="eth0">
+      <member index="0" type="channel">net1/chan0</member>
+      <member type="network">net1</member>
+      <address type="mac">00:00:00:aa:00:00</address>
+      <address type="IPv4">10.0.0.1/24</address>
+      <address type="IPv6">2001::1/64</address>
+    </interface>
+    <alias domain="COREID">1</alias>
+    <point lat="47.574008917" lon="-122.115015118" type="gps"/>
+  </host>
+  <host id="n2" name="n2">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n2/eth0" name="eth0">
+      <member index="1" type="channel">net1/chan0</member>
+      <member type="network">net1</member>
+      <address type="mac">00:00:00:aa:00:01</address>
+      <address type="IPv4">10.0.0.2/24</address>
+      <address type="IPv6">2001::2/64</address>
+    </interface>
+    <interface id="n2/eth1" name="eth1">
+      <member index="0" type="channel">net28/chan0</member>
+      <member type="network">net28</member>
+      <address type="mac">00:00:00:aa:00:02</address>
+      <address type="IPv4">10.0.1.1/24</address>
+      <address type="IPv6">2001:1::1/64</address>
+    </interface>
+    <alias domain="COREID">2</alias>
+    <point lat="47.57499531" lon="-122.11515806" type="gps"/>
+  </host>
+  <host id="n3" name="n3">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n3/eth0" name="eth0">
+      <member index="1" type="channel">net28/chan0</member>
+      <member type="network">net28</member>
+      <address type="mac">00:00:00:aa:00:03</address>
+      <address type="IPv4">10.0.1.2/24</address>
+      <address type="IPv6">2001:1::2/64</address>
+    </interface>
+    <interface id="n3/eth1" name="eth1">
+      <member index="0" type="channel">net25/chan0</member>
+      <member type="network">net25</member>
+      <address type="mac">00:00:00:aa:00:04</address>
+      <address type="IPv4">10.0.2.1/24</address>
+      <address type="IPv6">2001:2::1/64</address>
+    </interface>
+    <alias domain="COREID">3</alias>
+    <point lat="47.5759432161" lon="-122.115560951" type="gps"/>
+  </host>
+  <host id="n4" name="n4">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n4/eth0" name="eth0">
+      <member index="1" type="channel">net25/chan0</member>
+      <member type="network">net25</member>
+      <address type="mac">00:00:00:aa:00:05</address>
+      <address type="IPv4">10.0.2.2/24</address>
+      <address type="IPv6">2001:2::2/64</address>
+    </interface>
+    <interface id="n4/eth1" name="eth1">
+      <member index="0" type="channel">net6/chan0</member>
+      <member type="network">net6</member>
+      <address type="mac">00:00:00:aa:00:06</address>
+      <address type="IPv4">10.0.3.1/24</address>
+      <address type="IPv6">2001:3::1/64</address>
+    </interface>
+    <alias domain="COREID">4</alias>
+    <point lat="47.5768121465" lon="-122.116224484" type="gps"/>
+  </host>
+  <host id="n5" name="n5">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n5/eth0" name="eth0">
+      <member index="1" type="channel">net6/chan0</member>
+      <member type="network">net6</member>
+      <address type="mac">00:00:00:aa:00:07</address>
+      <address type="IPv4">10.0.3.2/24</address>
+      <address type="IPv6">2001:3::2/64</address>
+    </interface>
+    <interface id="n5/eth1" name="eth1">
+      <member index="0" type="channel">net13/chan0</member>
+      <member type="network">net13</member>
+      <address type="mac">00:00:00:aa:00:08</address>
+      <address type="IPv4">10.0.4.1/24</address>
+      <address type="IPv6">2001:4::1/64</address>
+    </interface>
+    <alias domain="COREID">5</alias>
+    <point lat="47.577588448" lon="-122.117128954" type="gps"/>
+  </host>
+  <host id="n6" name="n6">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n6/eth0" name="eth0">
+      <member index="1" type="channel">net13/chan0</member>
+      <member type="network">net13</member>
+      <address type="mac">00:00:00:aa:00:09</address>
+      <address type="IPv4">10.0.4.2/24</address>
+      <address type="IPv6">2001:4::2/64</address>
+    </interface>
+    <interface id="n6/eth1" name="eth1">
+      <member index="0" type="channel">net14/chan0</member>
+      <member type="network">net14</member>
+      <address type="mac">00:00:00:aa:00:0a</address>
+      <address type="IPv4">10.0.5.1/24</address>
+      <address type="IPv6">2001:5::1/64</address>
+    </interface>
+    <alias domain="COREID">6</alias>
+    <point lat="47.5782179801" lon="-122.118255328" type="gps"/>
+  </host>
+  <host id="n7" name="n7">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n7/eth0" name="eth0">
+      <member index="1" type="channel">net14/chan0</member>
+      <member type="network">net14</member>
+      <address type="mac">00:00:00:aa:00:0b</address>
+      <address type="IPv4">10.0.5.2/24</address>
+      <address type="IPv6">2001:5::2/64</address>
+    </interface>
+    <interface id="n7/eth1" name="eth1">
+      <member index="0" type="channel">net0/chan0</member>
+      <member type="network">net0</member>
+      <address type="mac">00:00:00:aa:00:0c</address>
+      <address type="IPv4">10.0.6.1/24</address>
+      <address type="IPv6">2001:6::1/64</address>
+    </interface>
+    <alias domain="COREID">7</alias>
+    <point lat="47.5786866285" lon="-122.119524054" type="gps"/>
+  </host>
+  <host id="n8" name="n8">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n8/eth0" name="eth0">
+      <member index="1" type="channel">net0/chan0</member>
+      <member type="network">net0</member>
+      <address type="mac">00:00:00:aa:00:0d</address>
+      <address type="IPv4">10.0.6.2/24</address>
+      <address type="IPv6">2001:6::2/64</address>
+    </interface>
+    <interface id="n8/eth1" name="eth1">
+      <member index="0" type="channel">net27/chan0</member>
+      <member type="network">net27</member>
+      <address type="mac">00:00:00:aa:00:0e</address>
+      <address type="IPv4">10.0.7.1/24</address>
+      <address type="IPv6">2001:7::1/64</address>
+    </interface>
+    <alias domain="COREID">8</alias>
+    <point lat="47.5789807403" lon="-122.120915407" type="gps"/>
+  </host>
+  <host id="n9" name="n9">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n9/eth0" name="eth0">
+      <member index="1" type="channel">net27/chan0</member>
+      <member type="network">net27</member>
+      <address type="mac">00:00:00:aa:00:0f</address>
+      <address type="IPv4">10.0.7.2/24</address>
+      <address type="IPv6">2001:7::2/64</address>
+    </interface>
+    <interface id="n9/eth1" name="eth1">
+      <member index="0" type="channel">net21/chan0</member>
+      <member type="network">net21</member>
+      <address type="mac">00:00:00:aa:00:10</address>
+      <address type="IPv4">10.0.8.1/24</address>
+      <address type="IPv6">2001:8::1/64</address>
+    </interface>
+    <alias domain="COREID">9</alias>
+    <point lat="47.5790862051" lon="-122.122349821" type="gps"/>
+  </host>
+  <host id="n10" name="n10">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n10/eth0" name="eth0">
+      <member index="1" type="channel">net21/chan0</member>
+      <member type="network">net21</member>
+      <address type="mac">00:00:00:aa:00:11</address>
+      <address type="IPv4">10.0.8.2/24</address>
+      <address type="IPv6">2001:8::2/64</address>
+    </interface>
+    <interface id="n10/eth1" name="eth1">
+      <member index="0" type="channel">net2/chan0</member>
+      <member type="network">net2</member>
+      <address type="mac">00:00:00:aa:00:12</address>
+      <address type="IPv4">10.0.9.1/24</address>
+      <address type="IPv6">2001:9::1/64</address>
+    </interface>
+    <alias domain="COREID">10</alias>
+    <point lat="47.5790028688" lon="-122.123807339" type="gps"/>
+  </host>
+  <host id="n11" name="n11">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n11/eth0" name="eth0">
+      <member index="1" type="channel">net2/chan0</member>
+      <member type="network">net2</member>
+      <address type="mac">00:00:00:aa:00:13</address>
+      <address type="IPv4">10.0.9.2/24</address>
+      <address type="IPv6">2001:9::2/64</address>
+    </interface>
+    <interface id="n11/eth1" name="eth1">
+      <member index="0" type="channel">net5/chan0</member>
+      <member type="network">net5</member>
+      <address type="mac">00:00:00:aa:00:14</address>
+      <address type="IPv4">10.0.10.1/24</address>
+      <address type="IPv6">2001:10::1/64</address>
+    </interface>
+    <alias domain="COREID">11</alias>
+    <point lat="47.5787301221" lon="-122.125208167" type="gps"/>
+  </host>
+  <host id="n12" name="n12">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n12/eth0" name="eth0">
+      <member index="1" type="channel">net5/chan0</member>
+      <member type="network">net5</member>
+      <address type="mac">00:00:00:aa:00:15</address>
+      <address type="IPv4">10.0.10.2/24</address>
+      <address type="IPv6">2001:10::2/64</address>
+    </interface>
+    <interface id="n12/eth1" name="eth1">
+      <member index="0" type="channel">net30/chan0</member>
+      <member type="network">net30</member>
+      <address type="mac">00:00:00:aa:00:16</address>
+      <address type="IPv4">10.0.11.1/24</address>
+      <address type="IPv6">2001:11::1/64</address>
+    </interface>
+    <alias domain="COREID">12</alias>
+    <point lat="47.5782810067" lon="-122.126492234" type="gps"/>
+  </host>
+  <host id="n13" name="n13">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n13/eth0" name="eth0">
+      <member index="1" type="channel">net30/chan0</member>
+      <member type="network">net30</member>
+      <address type="mac">00:00:00:aa:00:17</address>
+      <address type="IPv4">10.0.11.2/24</address>
+      <address type="IPv6">2001:11::2/64</address>
+    </interface>
+    <interface id="n13/eth1" name="eth1">
+      <member index="0" type="channel">net15/chan0</member>
+      <member type="network">net15</member>
+      <address type="mac">00:00:00:aa:00:18</address>
+      <address type="IPv4">10.0.12.1/24</address>
+      <address type="IPv6">2001:12::1/64</address>
+    </interface>
+    <alias domain="COREID">13</alias>
+    <point lat="47.5776688701" lon="-122.127639361" type="gps"/>
+  </host>
+  <host id="n14" name="n14">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n14/eth0" name="eth0">
+      <member index="1" type="channel">net15/chan0</member>
+      <member type="network">net15</member>
+      <address type="mac">00:00:00:aa:00:19</address>
+      <address type="IPv4">10.0.12.2/24</address>
+      <address type="IPv6">2001:12::2/64</address>
+    </interface>
+    <interface id="n14/eth1" name="eth1">
+      <member index="0" type="channel">net8/chan0</member>
+      <member type="network">net8</member>
+      <address type="mac">00:00:00:aa:00:1a</address>
+      <address type="IPv4">10.0.13.1/24</address>
+      <address type="IPv6">2001:13::1/64</address>
+    </interface>
+    <alias domain="COREID">14</alias>
+    <point lat="47.5769066056" lon="-122.128569544" type="gps"/>
+  </host>
+  <host id="n15" name="n15">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n15/eth0" name="eth0">
+      <member index="1" type="channel">net8/chan0</member>
+      <member type="network">net8</member>
+      <address type="mac">00:00:00:aa:00:1b</address>
+      <address type="IPv4">10.0.13.2/24</address>
+      <address type="IPv6">2001:13::2/64</address>
+    </interface>
+    <interface id="n15/eth1" name="eth1">
+      <member index="0" type="channel">net29/chan0</member>
+      <member type="network">net29</member>
+      <address type="mac">00:00:00:aa:00:1c</address>
+      <address type="IPv4">10.0.14.1/24</address>
+      <address type="IPv6">2001:14::1/64</address>
+    </interface>
+    <alias domain="COREID">15</alias>
+    <point lat="47.5760480488" lon="-122.129261947" type="gps"/>
+  </host>
+  <host id="n16" name="n16">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n16/eth0" name="eth0">
+      <member index="1" type="channel">net29/chan0</member>
+      <member type="network">net29</member>
+      <address type="mac">00:00:00:aa:00:1d</address>
+      <address type="IPv4">10.0.14.2/24</address>
+      <address type="IPv6">2001:14::2/64</address>
+    </interface>
+    <interface id="n16/eth1" name="eth1">
+      <member index="0" type="channel">net26/chan0</member>
+      <member type="network">net26</member>
+      <address type="mac">00:00:00:aa:00:1e</address>
+      <address type="IPv4">10.0.15.1/24</address>
+      <address type="IPv6">2001:15::1/64</address>
+    </interface>
+    <alias domain="COREID">16</alias>
+    <point lat="47.575106548" lon="-122.129696411" type="gps"/>
+  </host>
+  <host id="n17" name="n17">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n17/eth0" name="eth0">
+      <member index="1" type="channel">net26/chan0</member>
+      <member type="network">net26</member>
+      <address type="mac">00:00:00:aa:00:1f</address>
+      <address type="IPv4">10.0.15.2/24</address>
+      <address type="IPv6">2001:15::2/64</address>
+    </interface>
+    <interface id="n17/eth1" name="eth1">
+      <member index="0" type="channel">net19/chan0</member>
+      <member type="network">net19</member>
+      <address type="mac">00:00:00:aa:00:20</address>
+      <address type="IPv4">10.0.16.1/24</address>
+      <address type="IPv6">2001:16::1/64</address>
+    </interface>
+    <alias domain="COREID">17</alias>
+    <point lat="47.5741359366" lon="-122.129852109" type="gps"/>
+  </host>
+  <host id="n18" name="n18">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n18/eth0" name="eth0">
+      <member index="1" type="channel">net19/chan0</member>
+      <member type="network">net19</member>
+      <address type="mac">00:00:00:aa:00:21</address>
+      <address type="IPv4">10.0.16.2/24</address>
+      <address type="IPv6">2001:16::2/64</address>
+    </interface>
+    <interface id="n18/eth1" name="eth1">
+      <member index="0" type="channel">net3/chan0</member>
+      <member type="network">net3</member>
+      <address type="mac">00:00:00:aa:00:22</address>
+      <address type="IPv4">10.0.17.1/24</address>
+      <address type="IPv6">2001:17::1/64</address>
+    </interface>
+    <alias domain="COREID">18</alias>
+    <point lat="47.5731497114" lon="-122.129728835" type="gps"/>
+  </host>
+  <host id="n19" name="n19">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n19/eth0" name="eth0">
+      <member index="1" type="channel">net3/chan0</member>
+      <member type="network">net3</member>
+      <address type="mac">00:00:00:aa:00:23</address>
+      <address type="IPv4">10.0.17.2/24</address>
+      <address type="IPv6">2001:17::2/64</address>
+    </interface>
+    <interface id="n19/eth1" name="eth1">
+      <member index="0" type="channel">net11/chan0</member>
+      <member type="network">net11</member>
+      <address type="mac">00:00:00:aa:00:24</address>
+      <address type="IPv4">10.0.18.1/24</address>
+      <address type="IPv6">2001:18::1/64</address>
+    </interface>
+    <alias domain="COREID">19</alias>
+    <point lat="47.5722018531" lon="-122.129325709" type="gps"/>
+  </host>
+  <host id="n20" name="n20">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n20/eth0" name="eth0">
+      <member index="1" type="channel">net11/chan0</member>
+      <member type="network">net11</member>
+      <address type="mac">00:00:00:aa:00:25</address>
+      <address type="IPv4">10.0.18.2/24</address>
+      <address type="IPv6">2001:18::2/64</address>
+    </interface>
+    <interface id="n20/eth1" name="eth1">
+      <member index="0" type="channel">net20/chan0</member>
+      <member type="network">net20</member>
+      <address type="mac">00:00:00:aa:00:26</address>
+      <address type="IPv4">10.0.19.1/24</address>
+      <address type="IPv6">2001:19::1/64</address>
+    </interface>
+    <alias domain="COREID">20</alias>
+    <point lat="47.5713329967" lon="-122.128662015" type="gps"/>
+  </host>
+  <host id="n21" name="n21">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n21/eth0" name="eth0">
+      <member index="1" type="channel">net20/chan0</member>
+      <member type="network">net20</member>
+      <address type="mac">00:00:00:aa:00:27</address>
+      <address type="IPv4">10.0.19.2/24</address>
+      <address type="IPv6">2001:19::2/64</address>
+    </interface>
+    <interface id="n21/eth1" name="eth1">
+      <member index="0" type="channel">net4/chan0</member>
+      <member type="network">net4</member>
+      <address type="mac">00:00:00:aa:00:28</address>
+      <address type="IPv4">10.0.20.1/24</address>
+      <address type="IPv6">2001:20::1/64</address>
+    </interface>
+    <alias domain="COREID">21</alias>
+    <point lat="47.570556785" lon="-122.12775748" type="gps"/>
+  </host>
+  <host id="n22" name="n22">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n22/eth0" name="eth0">
+      <member index="1" type="channel">net4/chan0</member>
+      <member type="network">net4</member>
+      <address type="mac">00:00:00:aa:00:29</address>
+      <address type="IPv4">10.0.20.2/24</address>
+      <address type="IPv6">2001:20::2/64</address>
+    </interface>
+    <interface id="n22/eth1" name="eth1">
+      <member index="0" type="channel">net7/chan0</member>
+      <member type="network">net7</member>
+      <address type="mac">00:00:00:aa:00:2a</address>
+      <address type="IPv4">10.0.21.1/24</address>
+      <address type="IPv6">2001:21::1/64</address>
+    </interface>
+    <alias domain="COREID">22</alias>
+    <point lat="47.5699273457" lon="-122.126631154" type="gps"/>
+  </host>
+  <host id="n23" name="n23">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n23/eth0" name="eth0">
+      <member index="1" type="channel">net7/chan0</member>
+      <member type="network">net7</member>
+      <address type="mac">00:00:00:aa:00:2b</address>
+      <address type="IPv4">10.0.21.2/24</address>
+      <address type="IPv6">2001:21::2/64</address>
+    </interface>
+    <interface id="n23/eth1" name="eth1">
+      <member index="0" type="channel">net24/chan0</member>
+      <member type="network">net24</member>
+      <address type="mac">00:00:00:aa:00:2c</address>
+      <address type="IPv4">10.0.22.1/24</address>
+      <address type="IPv6">2001:22::1/64</address>
+    </interface>
+    <alias domain="COREID">23</alias>
+    <point lat="47.5694587761" lon="-122.125362573" type="gps"/>
+  </host>
+  <host id="n24" name="n24">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n24/eth0" name="eth0">
+      <member index="1" type="channel">net24/chan0</member>
+      <member type="network">net24</member>
+      <address type="mac">00:00:00:aa:00:2d</address>
+      <address type="IPv4">10.0.22.2/24</address>
+      <address type="IPv6">2001:22::2/64</address>
+    </interface>
+    <interface id="n24/eth1" name="eth1">
+      <member index="0" type="channel">net9/chan0</member>
+      <member type="network">net9</member>
+      <address type="mac">00:00:00:aa:00:2e</address>
+      <address type="IPv4">10.0.23.1/24</address>
+      <address type="IPv6">2001:23::1/64</address>
+    </interface>
+    <alias domain="COREID">24</alias>
+    <point lat="47.5691647193" lon="-122.123971447" type="gps"/>
+  </host>
+  <host id="n25" name="n25">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n25/eth0" name="eth0">
+      <member index="1" type="channel">net9/chan0</member>
+      <member type="network">net9</member>
+      <address type="mac">00:00:00:aa:00:2f</address>
+      <address type="IPv4">10.0.23.2/24</address>
+      <address type="IPv6">2001:23::2/64</address>
+    </interface>
+    <interface id="n25/eth1" name="eth1">
+      <member index="0" type="channel">net12/chan0</member>
+      <member type="network">net12</member>
+      <address type="mac">00:00:00:aa:00:30</address>
+      <address type="IPv4">10.0.24.1/24</address>
+      <address type="IPv6">2001:24::1/64</address>
+    </interface>
+    <alias domain="COREID">25</alias>
+    <point lat="47.5690457809" lon="-122.122537524" type="gps"/>
+  </host>
+  <host id="n26" name="n26">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n26/eth0" name="eth0">
+      <member index="1" type="channel">net12/chan0</member>
+      <member type="network">net12</member>
+      <address type="mac">00:00:00:aa:00:31</address>
+      <address type="IPv4">10.0.24.2/24</address>
+      <address type="IPv6">2001:24::2/64</address>
+    </interface>
+    <interface id="n26/eth1" name="eth1">
+      <member index="0" type="channel">net23/chan0</member>
+      <member type="network">net23</member>
+      <address type="mac">00:00:00:aa:00:32</address>
+      <address type="IPv4">10.0.25.1/24</address>
+      <address type="IPv6">2001:25::1/64</address>
+    </interface>
+    <alias domain="COREID">26</alias>
+    <point lat="47.5691425983" lon="-122.121080056" type="gps"/>
+  </host>
+  <host id="n27" name="n27">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n27/eth0" name="eth0">
+      <member index="1" type="channel">net23/chan0</member>
+      <member type="network">net23</member>
+      <address type="mac">00:00:00:aa:00:33</address>
+      <address type="IPv4">10.0.25.2/24</address>
+      <address type="IPv6">2001:25::2/64</address>
+    </interface>
+    <interface id="n27/eth1" name="eth1">
+      <member index="0" type="channel">net17/chan0</member>
+      <member type="network">net17</member>
+      <address type="mac">00:00:00:aa:00:34</address>
+      <address type="IPv4">10.0.26.1/24</address>
+      <address type="IPv6">2001:26::1/64</address>
+    </interface>
+    <alias domain="COREID">27</alias>
+    <point lat="47.5694152965" lon="-122.119679463" type="gps"/>
+  </host>
+  <host id="n28" name="n28">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n28/eth0" name="eth0">
+      <member index="1" type="channel">net17/chan0</member>
+      <member type="network">net17</member>
+      <address type="mac">00:00:00:aa:00:35</address>
+      <address type="IPv4">10.0.26.2/24</address>
+      <address type="IPv6">2001:26::2/64</address>
+    </interface>
+    <interface id="n28/eth1" name="eth1">
+      <member index="0" type="channel">net16/chan0</member>
+      <member type="network">net16</member>
+      <address type="mac">00:00:00:aa:00:36</address>
+      <address type="IPv4">10.0.27.1/24</address>
+      <address type="IPv6">2001:27::1/64</address>
+    </interface>
+    <alias domain="COREID">28</alias>
+    <point lat="47.5698643374" lon="-122.118395558" type="gps"/>
+  </host>
+  <host id="n29" name="n29">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n29/eth0" name="eth0">
+      <member index="1" type="channel">net16/chan0</member>
+      <member type="network">net16</member>
+      <address type="mac">00:00:00:aa:00:37</address>
+      <address type="IPv4">10.0.27.2/24</address>
+      <address type="IPv6">2001:27::2/64</address>
+    </interface>
+    <interface id="n29/eth1" name="eth1">
+      <member index="0" type="channel">net10/chan0</member>
+      <member type="network">net10</member>
+      <address type="mac">00:00:00:aa:00:38</address>
+      <address type="IPv4">10.0.28.1/24</address>
+      <address type="IPv6">2001:28::1/64</address>
+    </interface>
+    <alias domain="COREID">29</alias>
+    <point lat="47.5704763828" lon="-122.117248496" type="gps"/>
+  </host>
+  <host id="n30" name="n30">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n30/eth0" name="eth0">
+      <member index="1" type="channel">net10/chan0</member>
+      <member type="network">net10</member>
+      <address type="mac">00:00:00:aa:00:39</address>
+      <address type="IPv4">10.0.28.2/24</address>
+      <address type="IPv6">2001:28::2/64</address>
+    </interface>
+    <interface id="n30/eth1" name="eth1">
+      <member index="0" type="channel">net22/chan0</member>
+      <member type="network">net22</member>
+      <address type="mac">00:00:00:aa:00:3a</address>
+      <address type="IPv4">10.0.29.1/24</address>
+      <address type="IPv6">2001:29::1/64</address>
+    </interface>
+    <alias domain="COREID">30</alias>
+    <point lat="47.571238556" lon="-122.116318264" type="gps"/>
+  </host>
+  <host id="n31" name="n31">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n31/eth0" name="eth0">
+      <member index="1" type="channel">net22/chan0</member>
+      <member type="network">net22</member>
+      <address type="mac">00:00:00:aa:00:3b</address>
+      <address type="IPv4">10.0.29.2/24</address>
+      <address type="IPv6">2001:29::2/64</address>
+    </interface>
+    <interface id="n31/eth1" name="eth1">
+      <member index="0" type="channel">net18/chan0</member>
+      <member type="network">net18</member>
+      <address type="mac">00:00:00:aa:00:3c</address>
+      <address type="IPv4">10.0.30.1/24</address>
+      <address type="IPv6">2001:30::1/64</address>
+    </interface>
+    <alias domain="COREID">31</alias>
+    <point lat="47.5720970345" lon="-122.115625715" type="gps"/>
+  </host>
+  <host id="n32" name="n32">
+    <type domain="CORE">ServalRPCNode</type>
+    <interface id="n32/eth0" name="eth0">
+      <member index="1" type="channel">net18/chan0</member>
+      <member type="network">net18</member>
+      <address type="mac">00:00:00:aa:00:3d</address>
+      <address type="IPv4">10.0.30.2/24</address>
+      <address type="IPv6">2001:30::2/64</address>
+    </interface>
+    <alias domain="COREID">32</alias>
+    <point lat="47.573038481" lon="-122.115191026" type="gps"/>
+  </host>
+  <CORE:defaultservices>
+    <device type="ServalRPCNode">
+      <service name="DefaultRoute"/>
+      <service name="ServalRPCService"/>
+      <service name="NetmonService"/>
+    </device>
+  </CORE:defaultservices>
+  <CORE:sessionconfig>
+    <origin alt="2.0" lat="47.5791667" lon="-122.132322" scale100="150.0"/>
+    <metadata>
+      <parameter name="global_options">interface_names=no ip_addresses=yes ipv6_addresses=yes node_labels=yes link_labels=yes show_api=no background_images=no annotations=yes grid=yes traffic_start=0</parameter>
+      <parameter name="canvas c1">{name {Canvas1}}</parameter>
+    </metadata>
+  </CORE:sessionconfig>
+</scenario>
