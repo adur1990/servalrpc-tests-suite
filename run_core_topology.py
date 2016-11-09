@@ -109,7 +109,7 @@ def build_islands():
     service.CoreServices(session).importcustom(myservices_path)
 
     opensessionxml(session, "topologies/islands.xml", True)
-    
+ 
     while True:
         # Sleep 120 to 300 seconds (2 to 5 minutes)
         sleeptime = 120 + random.randint(0, 180)
@@ -138,17 +138,26 @@ def build_islands():
 def build_chain():
     signal.signal(signal.SIGINT, signal_handler)
     service.CoreServices(session).importcustom(myservices_path)
-    
+
     opensessionxml(session, "topologies/chain.xml", True)
-    
+
     signal.pause()
 
+
+# Create Chain topology (read and parse chain.xml and wait for ctrl-c)
+def build_chain_small():
+    signal.signal(signal.SIGINT, signal_handler)
+    service.CoreServices(session).importcustom(myservices_path)
+ 
+    opensessionxml(session, "topologies/chain_small.xml", True)
+
+    signal.pause()
 
 # Create Hub topology
 def build_hub():
     signal.signal(signal.SIGINT, signal_handler)
     service.CoreServices(session).importcustom(myservices_path)
-    
+ 
     # Create hub node
     hub = session.addobj(cls=pycore.nodes.HubNode, name='hub')
     # Create 28 nodes, add the services, connect them to the hub and start the services.
@@ -167,6 +176,8 @@ if __name__ == '__main__':
 
     if sys.argv[1] == 'chain':
         build_chain()
+    if sys.argv[1] == 'small':
+        build_chain_small()
     elif sys.argv[1] == 'hub':
         build_hub()
     elif sys.argv[1] == 'islands':
