@@ -37,7 +37,7 @@ def signal_handler(num, stack):
 
 # Returns true in 25% of all cases
 def should_change():
-    return random.random() < 0.25
+    return random.random() < 0.5
 
 
 # Clear all dynamic links
@@ -111,15 +111,15 @@ def build_islands():
     opensessionxml(session, "topologies/islands.xml", True)
  
     while True:
-        # Sleep 120 to 300 seconds (2 to 5 minutes)
-        sleeptime = 120 + random.randint(0, 180)
-        time.sleep(sleeptime)
-        # If there are dynamic links and should_change returns true (25% probability) all dynamic links are cleared
+        time.sleep(60)
+
+        # If there are dynamic links and should_change returns true (50% probability) all dynamic links are cleared
+
         if should_change() and len(cur_ptp_list) != 0:
             clear_islands()
             continue
-        # In 25% of all cases all islands are connected together
-        if should_change():
+        # In 50% of all cases all islands are connected together
+        else:
             connect_all()
             continue
         # Flip a coin if dynamic links should be created or removed
@@ -128,7 +128,7 @@ def build_islands():
         num_change_links = random.randint(2, 5)
         # First case: add two random islands
         # Second case: delte num_change_links dynamic links
-        if choice:
+        if not choice:
             update_islands("add", num_change_links, islands[random.choice(islands.keys())])
         elif len(cur_ptp_list) >= num_change_links:
             update_islands("remove", num_change_links)

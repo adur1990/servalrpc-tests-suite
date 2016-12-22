@@ -29,7 +29,7 @@ initialize_topology () {
         printf "${red}# Initialization failed.\n${end}"
     else
         printf "${blu}# Waiting...!\n${end}"
-        sleep 60
+        sleep 120
         printf "${grn}# RPC scenario started successfully!\n${end}"
     fi
     return $CORE_TOPO_PID
